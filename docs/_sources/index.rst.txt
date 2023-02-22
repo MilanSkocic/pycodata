@@ -10,9 +10,9 @@ Welcome to PyCodata documentation!
    :maxdepth: 1
    :caption: Contents:
 
-   introduction/index.rst
-
-   autodoc/index.rst
+   getting_started/index.rst
+   releases/index.rst
+   api/index.rst
 
 
 
