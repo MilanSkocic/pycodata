@@ -1,129 +1,86 @@
-# Byte-compiled / optimized / DLL files
-__pycache__/
-*.py[cod]
-*$py.class
+# A new repo from scratch
+# Say you’ve just got some data from a collaborator and are about to start exploring it.
+#
+#    Create a directory to contain the project.
+#    Go into the new directory.
+#    $ git init.
+#    Write some code.
+#    $ git add to add the files (see the typical use page).
+#    $ git commit.
+#
+# A new repo from an existing project
+#
+# Say you’ve got an existing project that you want to start tracking with git.
+#
+#    Go into the directory containing the project.
+#    $ git init.
+#    $ git add (to add all of the relevant files)
+#    You’ll probably want to create a .gitignore file right away, to indicate all of the files you don’t want to track.
+#    Use git add .gitignore, too.
+#    $ git commit.
+#
+# Connect it to github
+#
+# Add user name and email as global
+#   $ git config --global user.name "FIRST_NAME LAST_NAME"
+#   $ git config --global user.email "MY_NAME@example.com"
+#
+#Add user name and email for specific git repository
+#    $ git config --global user.name "FIRST_NAME LAST_NAME"
+#    $ git config --global user.email "MY_NAME@example.com"
 
-# C extensions
+# You’ve now got a local git repository. You can use git locally, like that, if you want. But if you want the thing to have a home on github, do the following.
+#
+#    Go to github.
+#    Log in to your account.
+#    Click the new repository button in the top-right. You’ll have an option there to initialize the repository with a README file, but I don’t.
+#    Click the “Create repository” button.
+#
+# Now, follow the second set of instructions, “Push an existing repository…”
+#
+#   $ git remote add origin git@github.com:username/new_repo
+#   $ git push -u origin master
+# Push tags to remote location
+#   $ type git push --tags
+#
+# Rename a tag
+#   $ git tag new old (alias old with new)
+#   $ git -d old (delete old)
+#
+# Back to tag
+#   $ git checkout tags/tag_name
+# Back to master
+#   $ git checkout master
+#
+#API: an (incompatible) API change
+#BENCH: changes to the benchmark suite
+#BLD: change related to building numpy
+#BUG: bug fix
+#DEP: deprecate something, or remove a deprecated object
+#DEV: development tool or utility
+#DOC: documentation
+#ENH: enhancement
+#MAINT: maintenance commit (refactoring, typos, etc.)
+#REV: revert an earlier commit
+#STY: style fix (whitespace, PEP8)
+#TST: addition or modification of tests
+#REL: related to releasing
+#git log --pretty="format:`#%h <https://github.com/MilanSkocic/datadigitizer/commit/%H>`_-%cn-%s"
+#git ls-remote origin 'pull/*/head'
+#`PR#1 <https://github.com/MilanSkocic/datadigitizer/pull/1/>`_
+# twine upload -r testpypi dist/*
+# twine upload -r pypi dist/*
+build/
+dist/
+sphinx/build/
+sphinx/source/_build
+.idea/
+.vscode/
+.mypy_cache/
+*.log
+*.pyc
+*.pyo
+*.egg-info
 *.so
 
-# Distribution / packaging
-.Python
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-pip-wheel-metadata/
-share/python-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
-MANIFEST
-
-# PyInstaller
-#  Usually these files are written by a python script from a template
-#  before PyInstaller builds the exe, so as to inject date/other infos into it.
-*.manifest
-*.spec
-
-# Installer logs
-pip-log.txt
-pip-delete-this-directory.txt
-
-# Unit test / coverage reports
-htmlcov/
-.tox/
-.nox/
-.coverage
-.coverage.*
-.cache
-nosetests.xml
-coverage.xml
-*.cover
-*.py,cover
-.hypothesis/
-.pytest_cache/
-
-# Translations
-*.mo
-*.pot
-
-# Django stuff:
-*.log
-local_settings.py
-db.sqlite3
-db.sqlite3-journal
-
-# Flask stuff:
-instance/
-.webassets-cache
-
-# Scrapy stuff:
-.scrapy
-
-# Sphinx documentation
-docs/_build/
-
-# PyBuilder
-target/
-
-# Jupyter Notebook
-.ipynb_checkpoints
-
-# IPython
-profile_default/
-ipython_config.py
-
-# pyenv
-.python-version
-
-# pipenv
-#   According to pypa/pipenv#598, it is recommended to include Pipfile.lock in version control.
-#   However, in case of collaboration, if having platform-specific dependencies or dependencies
-#   having no cross-platform support, pipenv may install dependencies that don't work, or not
-#   install all needed dependencies.
-#Pipfile.lock
-
-# PEP 582; used by e.g. github.com/David-OConnor/pyflow
-__pypackages__/
-
-# Celery stuff
-celerybeat-schedule
-celerybeat.pid
-
-# SageMath parsed files
-*.sage.py
-
-# Environments
-.env
-.venv
-env/
-venv/
-ENV/
-env.bak/
-venv.bak/
-
-# Spyder project settings
-.spyderproject
-.spyproject
-
-# Rope project settings
-.ropeproject
-
-# mkdocs documentation
-/site
-
-# mypy
-.mypy_cache/
-.dmypy.json
-dmypy.json
-
-# Pyre type checker
-.pyre/
+Pipfile.lock
