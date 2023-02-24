@@ -6,3 +6,4 @@ Release Notes
 
     0.2.0-notes.rst
     0.2.1-notes.rst
+    0.2.2-notes.rst
