@@ -11,18 +11,17 @@ The list of the available constants is available
 
 The version of the python wrapper follows the versions of the codata library.
 
-How to install
-=================
+Installation
+===================
+See  ``INSTALL.txt``.
 
-.. literalinclude:: ../../../INSTALL.txt
-    :language: python
 
 Dependencies
-==============
+================
 
-.. literalinclude:: ../../../requirements.txt
+See ``requirements.txt``.
 
-License
-==========
 
-.. literalinclude:: ../../../LICENSE.txt
+License information
+===========================
+See ``LICENSE.txt``.
