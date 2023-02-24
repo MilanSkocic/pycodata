@@ -6,6 +6,7 @@ include LICENSE.TXT
 include MANIFEST.in
 include README.rst
 inlcude requirements.txt
+include site.cfg
 
 # bdist
 recursive-include pycodata *.c *.h *.f90
