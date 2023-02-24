@@ -9,6 +9,8 @@ spec = importlib.util.spec_from_file_location('version', './pycodata/version.py'
 mod = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(mod)
 
+cfg = configparser.ConfigParser()
+
 cfg.read(pathlib.Path("site.cfg"))
 codata_include_dirs = cfg["CODATA"]["include_dirs"]
 codata_library_dirs = cfg["CODATA"]["library_dirs"]
