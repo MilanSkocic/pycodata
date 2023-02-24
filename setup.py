@@ -11,12 +11,18 @@ spec.loader.exec_module(mod)
 def read(fname):
     return open(os.path.join(os.path.dirname(__file__), fname), 'r', encoding='utf-8').read()
 
-cfg = configparser.ConfigParser()
-cfg.read("site.cfg")
+if os.path.exists("./site.cfg"):
+  cfg = configparser.ConfigParser()
+  cfg.read("site.cfg")
 
-codata_include_dirs = cfg["CODATA"]["include_dirs"]
-codata_library_dirs = cfg["CODATA"]["library_dirs"]
-codata_libraries = cfg["CODATA"]["libraries"]
+  codata_include_dirs = cfg["CODATA"]["include_dirs"]
+  codata_library_dirs = cfg["CODATA"]["library_dirs"]
+  codata_libraries = cfg["CODATA"]["libraries"]
+else:
+  codata_include_dirs = "codata" 
+  codata_library_dirs = "/usr/lib"
+  codata_libraries = "/usr/include"
+
 
 mod_ext = Extension(name="pycodata._codata",
                                          sources=["./pycodata/_codata.c"],
