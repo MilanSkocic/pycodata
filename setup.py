@@ -2,14 +2,12 @@ import os
 from setuptools import setup, find_packages, Extension
 import configparser
 import importlib
+import pathlib
 
 # Import only version.py file for extracting the version
 spec = importlib.util.spec_from_file_location('version', './pycodata/version.py')
 mod = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(mod)
-
-def read(fname):
-    return open(os.path.join(os.path.dirname(__file__), fname), 'r', encoding='utf-8').read()
 
 if os.path.exists("./site.cfg"):
   cfg = configparser.ConfigParser()
@@ -36,13 +34,13 @@ setup(name=mod.__package_name__,
       author=mod.__author__,
       author_email=mod.__author_email__,
       description=mod.__package_name__,
-      long_description=read('README.rst'),
+      long_description=pathlib.Path("README.rst").read_text(encoding="utf-8"),
       url='https://milanskocic.github.io/pycodata/index.html',
       download_url='https://github.com/MilanSkocic/pycodata',
       packages=find_packages(),
       include_package_data=True,
       python_requires='>=3.7',
-      install_requires=read('./requirements.txt').split('\n'),
+      install_requires=pathlib.Path("requirements.txt").read_text(encoding="utf-8").split('\n'),
       classifiers=["Development Status :: 4 - Beta",
                    "Intended Audience :: Science/Research",
                    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
