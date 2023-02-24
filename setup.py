@@ -9,18 +9,10 @@ spec = importlib.util.spec_from_file_location('version', './pycodata/version.py'
 mod = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(mod)
 
-if os.path.exists("./site.cfg"):
-  cfg = configparser.ConfigParser()
-  cfg.read("site.cfg")
-
-  codata_include_dirs = cfg["CODATA"]["include_dirs"]
-  codata_library_dirs = cfg["CODATA"]["library_dirs"]
-  codata_libraries = cfg["CODATA"]["libraries"]
-else:
-  codata_include_dirs = "codata" 
-  codata_library_dirs = "/usr/lib"
-  codata_libraries = "/usr/include"
-
+cfg.read(pathlib.Path("site.cfg"))
+codata_include_dirs = cfg["CODATA"]["include_dirs"]
+codata_library_dirs = cfg["CODATA"]["library_dirs"]
+codata_libraries = cfg["CODATA"]["libraries"]
 
 mod_ext = Extension(name="pycodata._codata",
                                          sources=["./pycodata/_codata.c"],
