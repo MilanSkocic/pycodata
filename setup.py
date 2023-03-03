@@ -109,13 +109,6 @@ if __name__ == "__main__":
     found_shared = search_libraries(codata_library_dirs, codata_libraries, static=False)
     found_static = search_libraries(codata_library_dirs, codata_libraries, static=True)
 
-    if found_shared == 0:
-        print("WARNING: Headers were not found.")
-    if found_shared == 0:
-        print("WARNING: Shared libraries were not found.")
-    if found_static == 0:
-        print("WARNING: Static libraries were not found.")
-    
     mod_ext = Extension(name="pycodata._codata",
                                          sources=["./pycodata/_codata.c"],
                                          libraries=codata_libraries,
