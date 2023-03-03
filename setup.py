@@ -9,18 +9,44 @@ spec = importlib.util.spec_from_file_location('version', './pycodata/version.py'
 mod = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(mod)
 
-cfg = configparser.ConfigParser()
+# user dir
+user_dir = pathlib.Path(os.path.expanduser("~"))
+# configuration file in user home
+cfg_user = configparser.RawConfigParser()
+cfg_path = user_dir / "pycodata-site.cfg"
+if cfg_path.exists():
+    cfg_user.read(cfg_path)
+# configuration file in package
+cfg_package = configparser.RawConfigParser()
+cfg_path = pathlib.Path("site.cfg")
+if cfg_path.exists():
+    cfg_package.read(cfg_path)
 
-cfg.read(pathlib.Path("site.cfg"))
-codata_include_dirs = cfg["CODATA"]["include_dirs"]
-codata_library_dirs = cfg["CODATA"]["library_dirs"]
-codata_libraries = cfg["CODATA"]["libraries"]
+# Set dirs for codata library
+cfg_dict = {"CODATA": {"libraries": "codata",
+                       "include_dirs": "/usr/lib/include,/usr/local/include,"\
+                                       +user_dir+".local/include",
+                       "library_dirs": "/usr/lib, /usr/local/lib"}}
+
+cfg = configparser.RawConfigParser()
+cfg.read_dict(cfg_dict)
+cfg.update(cfg_user)
+cfg.update(cfg_package)
+
+codata_include_dirs = cfg["CODATA"]["include_dirs"].split(",")
+codata_library_dirs = cfg["CODATA"]["library_dirs"].split(",")
+codata_libraries = cfg["CODATA"]["libraries"].split(",")
+
+for section in cfg.sections():
+    print(section)
+    for key, value in cfg.items(section):
+        print(key, value.split(","))
 
 mod_ext = Extension(name="pycodata._codata",
                                          sources=["./pycodata/_codata.c"],
-                                         libraries=[codata_libraries],
-                                         library_dirs=[codata_library_dirs],
-                                         include_dirs=[codata_include_dirs])
+                                         libraries=codata_libraries,
+                                         library_dirs=codata_library_dirs,
+                                         include_dirs=codata_include_dirs)
 setup(name=mod.__package_name__,
       version=mod.__version__,
       maintainer=mod.__maintainer__,
